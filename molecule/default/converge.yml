@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  roles:
+    - role: docker_compose
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') }}"

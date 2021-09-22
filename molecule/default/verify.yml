@@ -1,0 +1,13 @@
+---
+- name: Verify
+  hosts: all
+  vars_files:
+    - ../../defaults/main.yml
+  tasks:
+    - name: Check docker-compose version
+      command: docker-compose --version
+      register: output
+    - name: Assert that docker-compose is installed
+      assert:
+        that:
+        - "'docker-compose version {{ docker_compose_version }}' in output.stdout"
