@@ -1,25 +1,27 @@
 ---
-
-- name: Check current docker-compose version.
-  command: "{{ docker_compose_path }} --version"
-  register: docker_compose_current_version
-  changed_when: false
-  failed_when: false
-
-- name: Delete existing docker-compose version if it's different.
+- name: Ensure docker_compose lib folder exists
   file:
-    path: "{{ docker_compose_path }}"
-    state: absent
-  when: >
-    docker_compose_current_version.stdout is defined
-    and docker_compose_version not in docker_compose_current_version.stdout
-
-- name: Install Docker Compose (if configured).
-  get_url:
-    url: "{{ docker_compose_url }}"
-    dest: "{{ docker_compose_path }}"
-    checksum: "{{ docker_compose_checksum }}"
+    path: "{{ docker_compose_install_path }}"
+    state: directory
+    owner: root
+    group: root
     mode: 0755
-  when: >
-    docker_compose_current_version.stdout is not defined
-    or docker_compose_version not in docker_compose_current_version.stdout
+  become: true
+
+- name: Download docker_compose archive
+  get_url:
+    url: "{{ docker_compose_download_url }}"
+    dest: "{{ docker_compose_path }}"
+    mode: 0655
+    checksum: "{{ docker_compose_checksum }}"
+  become: true
+
+- name: Create docker_compose symlink
+  file:
+    src: "{{ docker_compose_path }}"
+    dest: "{{ docker_compose_bin }}"
+    owner: root
+    group: root
+    state: link
+    force: true
+  become: true

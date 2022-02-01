@@ -11,8 +11,7 @@ None.
 Role Variables
 --------------
 
-- `docker_compose_version`: "1.26.0"
-- `docker_compose_path`: /usr/local/bin/docker-compose
+- `docker_compose_version`: "1.29.2"
 
 Dependencies
 ------------
@@ -22,14 +21,16 @@ None.
 Example Playbook
 ----------------
 
-- hosts: all
-  roles:
-    - ecgalaxy.docker_compose
+    - hosts: all
+      roles:
+        - ecgalaxy.docker_compose
 
 License
 -------
 
-EUPL-1.2
+Copyright the European Union 2022.
+
+Licensed under the EUPL-1.2 or later.
 
 Author Information
 ------------------

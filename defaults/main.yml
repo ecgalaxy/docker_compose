@@ -1,6 +1,9 @@
 ---
 
-docker_compose_version: "1.26.0"
+docker_compose_version: "1.29.2"
 docker_compose_checksum: "sha256:https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64.sha256"
-docker_compose_url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
-docker_compose_path: /usr/local/bin/docker-compose
+docker_compose_download_url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
+docker_compose_install_basedir: "/opt/docker_compose"
+docker_compose_install_path: "{{ docker_compose_install_basedir }}/{{ docker_compose_version }}"
+docker_compose_path: "{{ docker_compose_install_path }}/docker-compose"
+docker_compose_bin: "/usr/local/bin/docker-compose"

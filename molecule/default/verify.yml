@@ -10,4 +10,4 @@
     - name: Assert that docker-compose is installed
       assert:
         that:
-        - "'docker-compose version {{ docker_compose_version }}' in output.stdout"
+          - "'docker-compose version {{ docker_compose_version }}' in output.stdout"
