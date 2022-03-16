@@ -1,6 +1,6 @@
 ---
 - name: Ensure docker_compose lib folder exists
-  file:
+  ansible.builtin.file:
     path: "{{ docker_compose_install_path }}"
     state: directory
     owner: root
@@ -9,7 +9,7 @@
   become: true
 
 - name: Download docker_compose archive
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ docker_compose_download_url }}"
     dest: "{{ docker_compose_path }}"
     mode: 0655
@@ -17,7 +17,7 @@
   become: true
 
 - name: Create docker_compose symlink
-  file:
+  ansible.builtin.file:
     src: "{{ docker_compose_path }}"
     dest: "{{ docker_compose_bin }}"
     owner: root
