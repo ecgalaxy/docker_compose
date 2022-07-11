@@ -1,7 +1,7 @@
 ECGALAXY docker-compose
 =======================
 
-This role installs docker-compose.
+This role installs docker-compose v1.
 
 Requirements
 ------------
